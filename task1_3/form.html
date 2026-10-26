@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1.3</title>
+</head>
+<body>
+    <h1>Personal information</h1>
+    <form action="https://httpbin.io/dump/request" method="POST">
+        <p>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+        </p>
+        <p>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+        </p>
+        <p>
+            <label for="date-of-birth">Date of birth:</label>
+            <input type="date" id="date-of-birth" name="date_of_birth" autocomplete="bday" required>
+        </p>
+        <p>
+            <label for="favourite-colour">Favourite colour:</label>
+            <input type="color" id="favourite-colour" name="favourite_colour" value="#336699">
+        </p>
+        <fieldset>
+            <legend>Are you a staff member or a student?</legend>
+            <p>
+                <input type="radio" id="staff" name="role" value="staff" required>
+                <label for="staff">Staff member</label>
+            </p>
+            <p>
+                <input type="radio" id="student" name="role" value="student" required>
+                <label for="student">Student</label>
+            </p>
+        </fieldset>
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+</body>
+</html>
