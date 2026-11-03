@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task 2.3</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.min.css">
+</head>
+<body>
+    <header class="container">
+        <nav aria-label="Main navigation">
+            <ul><li><strong>Web learning club</strong></li></ul>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#join" class="secondary">Join</a></li>
+                <li><a href="#components" class="contrast">Components</a></li>
+            </ul>
+        </nav>
+        <h1>Learn web development together</h1>
+        <p>A small study group for practising HTML, CSS, and accessible web design.</p>
+        <button type="button" id="layout-toggle" class="outline" aria-pressed="false">Use fluid layout</button>
+    </header>
+    <main class="container" id="page-content">
+        <div class="grid">
+            <section id="about">
+                <h2>About the club</h2>
+                <p>We build small pages and share what we learn. Start with the
+                    <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development">MDN learning resources</a>
+                    to explore the basics at your own pace.</p>
+                <p>This page uses <a href="https://picocss.com/docs" class="secondary">Pico CSS</a>
+                    to style semantic HTML. Its grid places these two sections side by side on wider screens.</p>
+                <p>Read the <a href="https://picocss.com/docs/classless" class="contrast">classless CSS documentation</a>
+                    to learn about another way of using Pico.</p>
+                <article>
+                    <header>Next study session</header>
+                    <p>Bring a page you would like to improve. We will discuss headings, forms, and responsive layouts.</p>
+                    <footer><a href="#join" role="button" class="secondary outline">Join the session</a></footer>
+                </article>
+            </section>
+            <section id="join">
+                <h2>Join a session</h2>
+                <p>Complete this demonstration form to send your entries to HTTPBin and view the request.</p>
+                <form action="https://httpbin.io/dump/request" method="POST">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" autocomplete="name" required>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required>
+                    <label for="topic">Preferred topic</label>
+                    <select id="topic" name="topic">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="accessibility">Accessibility</option>
+                    </select>
+                    <fieldset>
+                        <label for="updates"><input id="updates" name="updates" type="checkbox" value="yes">Include me in session updates</label>
+                    </fieldset>
+                    <div role="group">
+                        <button type="submit">Submit</button>
+                        <button type="reset" class="secondary">Reset</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <section id="components">
+            <h2>Pico components</h2>
+            <p>Explore the accordion, card above, dropdown, and grouped buttons. The dialog, loading indicator,
+                progress bar, and tooltip demonstrate additional components.</p>
+            <details>
+                <summary>Accordion: what should I bring?</summary>
+                <p>A laptop, a text editor, and a small HTML page are enough to get started.</p>
+            </details>
+            <details class="dropdown">
+                <summary>Learning resources</summary>
+                <ul>
+                    <li><a href="https://picocss.com/docs">Pico documentation</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS reference</a></li>
+                </ul>
+            </details>
+            <div role="group" aria-label="Section shortcuts">
+                <a href="#about" role="button">About</a>
+                <a href="#join" role="button" class="secondary">Join</a>
+                <button type="button" class="contrast" id="open-dialog">Session details</button>
+            </div>
+            <p><a href="https://picocss.com/docs/tooltip" data-tooltip="Read Pico's tooltip documentation">How tooltips work</a></p>
+            <label for="learning-progress">Example learning progress: 50%</label>
+            <progress id="learning-progress" value="50" max="100">50%</progress>
+            <p>Loading indicator demonstration (no background request):</p>
+            <button type="button" aria-busy="true" disabled>Loading example</button>
+        </section>
+    </main>
+    <dialog id="session-dialog" aria-labelledby="dialog-title">
+        <article>
+            <header>
+                <button type="button" aria-label="Close" rel="prev" id="close-dialog"></button>
+                <h2 id="dialog-title">Session details</h2>
+            </header>
+            <p>Our practice session covers semantic HTML, custom CSS, and Pico components.</p>
+            <footer><button type="button" id="confirm-dialog">Got it</button></footer>
+        </article>
+    </dialog>
+    <footer class="container"><small>Task 2.3 — Exploring Pico CSS.</small></footer>
+    <script>
+        const main = document.getElementById("page-content");
+        const toggle = document.getElementById("layout-toggle");
+        toggle.addEventListener("click", () => {
+            const fluid = main.classList.toggle("container-fluid");
+            main.classList.toggle("container", !fluid);
+            toggle.setAttribute("aria-pressed", String(fluid));
+            toggle.textContent = fluid ? "Use fixed-width layout" : "Use fluid layout";
+        });
+        const dialog = document.getElementById("session-dialog");
+        document.getElementById("open-dialog").addEventListener("click", () => dialog.showModal());
+        document.getElementById("close-dialog").addEventListener("click", () => dialog.close());
+        document.getElementById("confirm-dialog").addEventListener("click", () => dialog.close());
+    </script>
+</body>
+</html>
