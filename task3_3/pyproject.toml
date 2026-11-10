@@ -1,0 +1,9 @@
+[project]
+name = "task3-3"
+version = "0.1.0"
+description = "HTTP GET and POST request examples"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx[cli]>=0.28.1,<0.29",
+]
