@@ -1,8 +1,10 @@
-// Task 4.7
+// Task 4.7: form and path parameters
 
+import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.*
 import io.ktor.server.pebble.*
 import io.ktor.server.request.*
+import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Application.configureRouting() {
@@ -11,8 +13,27 @@ fun Application.configureRouting() {
             call.respondTemplate("form.peb", emptyMap())
         }
 
-        // Add route to handle POST requests containing form data
+        post("/roll") {
+            val params = call.receiveParameters()
+            val numDice = (params["num_dice"] ?: "1").toIntOrNull()
+            val dieSides = (params["die_sides"] ?: "6").toIntOrNull()
+            if (numDice == null || numDice <= 0 || dieSides == null || dieSides !in DiceRoll.VALID_DIE_SIDES) {
+                call.respondText("Invalid dice selection", status = HttpStatusCode.BadRequest)
+                return@post
+            }
+            val roll = DiceRoll(numDice, dieSides)
+            call.respondTemplate("result.peb", mapOf("roll" to roll))
+        }
 
-        // Add route to handle GET requests for URLs like /roll/3d8
+        get(Regex("""/roll/(?<numDice>\d+)d(?<dieSides>\d+)""")) {
+            val numDice = call.parameters["numDice"]?.toIntOrNull()
+            val dieSides = call.parameters["dieSides"]?.toIntOrNull()
+            if (numDice == null || numDice <= 0 || dieSides == null || dieSides !in DiceRoll.VALID_DIE_SIDES) {
+                call.respondText("Invalid dice selection", status = HttpStatusCode.BadRequest)
+                return@get
+            }
+            val roll = DiceRoll(numDice, dieSides)
+            call.respondTemplate("result.peb", mapOf("roll" to roll))
+        }
     }
 }
