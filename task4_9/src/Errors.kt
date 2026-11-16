@@ -12,11 +12,12 @@ fun Application.configureErrorHandling() {
             call.respondTemplate("not-found.peb", mapOf(
                 "status" to status,
                 "path" to call.request.path()
-            ))
+            ), status = status)
         }
 
         exception<Throwable> { call, error ->
-            call.respondTemplate("error.peb", mapOf("error" to error))
+            call.respondTemplate("error.peb", mapOf("error" to error),
+                status = HttpStatusCode.InternalServerError)
         }
     }
 }

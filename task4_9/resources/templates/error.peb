@@ -4,4 +4,5 @@
 {% block main %}
 <h1>Server Error</h1>
 <p>{{ error.message }}</p>
+<p><a href="/" role="button">Return to Dice Roller</a></p>
 {% endblock %}

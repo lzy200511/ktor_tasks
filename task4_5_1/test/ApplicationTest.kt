@@ -20,5 +20,24 @@ class ApplicationTest : FreeSpec({
         }
     }
 
-    // Add more tests here
+    listOf("Alice", "Bob", "Charlie").forEach { name ->
+        "Path /hello/$name greets the named person" {
+            testApplication {
+                configure()
+                val response = client.get("/hello/$name")
+                response.status shouldBe HttpStatusCode.OK
+                response.headers["Content-Type"]?.shouldContain("text/plain")
+                response.bodyAsText() shouldBe "Hello $name!"
+            }
+        }
+    }
+
+    listOf("/hello", "/hello/").forEach { path ->
+        "Path $path without a name returns 404" {
+            testApplication {
+                configure()
+                client.get(path).status shouldBe HttpStatusCode.NotFound
+            }
+        }
+    }
 })

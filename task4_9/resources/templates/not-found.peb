@@ -5,4 +5,5 @@
 <h1>Error</h1>
 <p>Status code: {{ status }}</p>
 <p>Sorry, the URL <code>{{ path }}</code> is not supported by this application.</p>
+<p><a href="/" role="button">Return to Dice Roller</a></p>
 {% endblock %}
