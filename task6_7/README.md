@@ -23,3 +23,9 @@ format and content. If you rerun the tests, this new test should fail.
 The final step is to copy the code from `AlbumsPage.kt` and `albums.peb` in
 your Task 6.6 solution into this application, adjusting it as necessary so
 that all four tests now pass.
+
+## Completed implementation
+
+See [Task 6 completion notes](../TASK6.md) for the finished code,
+database setup, and verification limits. After creating the Task 6.5 database,
+you can copy it here with `./prepare-database` (Windows: `prepare-database.bat`).

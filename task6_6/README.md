@@ -22,3 +22,9 @@ artists and the albums in the database, but these pages are currently blank.
 Your task is to modify the application so that the required information is
 displayed on those pages. See the comments in the code, and the instructions
 in the Ktor Web Development Guide, for more details.
+
+## Completed implementation
+
+See [Task 6 completion notes](../TASK6.md) for the finished code,
+database setup, and verification limits. After creating the Task 6.5 database,
+you can copy it here with `./prepare-database` (Windows: `prepare-database.bat`).

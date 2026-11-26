@@ -1,7 +1,31 @@
-{# Task 6.6 #}
 {% extends "base.peb" %}
+{% block title %}Albums | Music Database{% endblock %}
 {% block main %}
 <h1>Albums</h1>
-{# Write code here to display album details in a table #}
-{# Table columns should be artist name, album title, year of release #}
+{% if albums is not empty %}
+<div class="overflow-auto">
+<table>
+  <caption>Albums sorted by artist name and then release year</caption>
+  <thead>
+    <tr>
+      <th scope="col">Artist</th>
+      <th scope="col">Album</th>
+      <th scope="col">Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for album in albums %}
+    <tr>
+      <td>{{ album.artist.name }}</td>
+      <td>{{ album.title }}</td>
+      <td>{{ album.year }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p>No albums in the database.</p>
+{% endif %}
+<p><a href="/">Back to the music database</a></p>
 {% endblock %}

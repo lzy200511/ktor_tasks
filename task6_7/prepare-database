@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+cd "$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+if [ -f music.mv.db ]; then
+    echo "music.mv.db already exists; keeping it."
+    exit 0
+fi
+if [ ! -f ../task6_5/music.mv.db ]; then
+    echo "Create the source database first: cd ../task6_5 && ./kotlin run -m create" >&2
+    exit 1
+fi
+cp ../task6_5/music.mv.db music.mv.db
+echo "Copied the Task 6.5 database."

@@ -1,0 +1,7 @@
+/build/
+/.kotlin/
+/.amper/
+/music.mv.db
+/music.trace.db
+/music.lock.db
+/music.temp.db
